@@ -12,8 +12,21 @@ import {
 } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {useNavigation} from '@react-navigation/native';
+import { useFormik} from 'formik'
 
 const Login = () => {
+  const formik = useFormik(
+    {
+      initValues:{
+        email:'',
+        password:''
+      },
+      onsubmit:values=>{
+        login(values.email,values.password);
+      }
+    }
+  )
+
   const [email, setEmail] = useState();
   const [loading, setLoading] = useState();
   const [password, setPassword] = useState();
@@ -27,9 +40,13 @@ const Login = () => {
       login(email, password);
     }
   };
-  function login(emailUser, passwordUser) {
+  
+  function login(emailUser, passwordUser) {    
     //Login exitoso
-    setLoading(false);
+    if (email == null || email == '' || password == null || password == '') {
+      Alert.alert('Debes escribir los datos de ingreso');
+      return;
+    }
     navigation.navigate('TabLayout');
   }
 
