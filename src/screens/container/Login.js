@@ -9,11 +9,14 @@ import {
   Image,
   TouchableOpacity,
   Alert,
+  YellowBox,
 } from 'react-native';
+import 'react-native-gesture-handler';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {useNavigation} from '@react-navigation/native';
 import {useFormik} from 'formik';
 
+YellowBox.ignoreWarnings(['Warning: ...']);
 const Login = () => {
   const formik = useFormik({
     initialValues: {
@@ -30,12 +33,8 @@ const Login = () => {
   const navigation = useNavigation();
   function login(emailUser, passwordUser) {
     //Login exitoso
-    if (emailUser == null || emailUser == '' || passwordUser == null || passwordUser == '') {
-      alert('Ingrese datos de inicio de sessión')
-      return;
-    }
     setLoading(false);
-    navigation.navigate('TabLayout');
+    navigation.navigate('DrawerNavigation');
   }
 
   return (

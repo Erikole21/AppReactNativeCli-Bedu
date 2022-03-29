@@ -1,17 +1,15 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import {Image} from 'react-native';
-import NavigationHome from './NavigationHome';
-//import SearchScreen from '../screens/components/search/search';
-import StrainsScreen from '../screens/components/strains/strains';
-import FriendsScreen from '../screens/container/FriendsScreen';
+import NavigationHome from '../navigation/NavigationHome'
+import MisViajes from '../screens/container/Orders'
+
 
 const Tab = createBottomTabNavigator();
-const TabLayout = () => {
+const TabLayout = () => {     
   return (
-    <Tab.Navigator
-      initialRouteName="Deals"
+    <Tab.Navigator     
+      initialRouteName='ViajesTab' 
       screenOptions={{
         activeTintColor: '#e91e63',
         labelStyle: {
@@ -23,65 +21,30 @@ const TabLayout = () => {
       }}>
       {/* Tab-HomeScreen */}
       <Tab.Screen
-        name="Home"
-        component={NavigationHome}
-        options={{
-          headerShown: false,
-          tabBarLabel: 'Home',
-          tabBarIcon: (color, size) => (
-            <Icon name="home" size={23} color={color} />
-          ),
-        }}
-      />
-      {/* Tab-SearchScreen */}
-      <Tab.Screen
-        name="Friends"
-        component={FriendsScreen}
-        options={{
-          tabBarLabel: 'Friends',
-          tabBarIcon: (color, size) => (
-            <Icon name="home" size={23} color={color} />
-          ),
-        }}
-      />
-      {/* Tab-DealsScreen */}
-      <Tab.Screen
-        name="Deals"
+        name="MisViajesTab"              
+        component={MisViajes}
         options={{
           headerShown: false,
           tabBarLabel: '',
-          tabBarIcon: () => renderImageMenu(),
+          tabBarIcon: () => renderImageMisViajes(),
+        }}
+      />      
+      {/* Tab-DealsScreen */}
+      <Tab.Screen
+        name="ViajesTab"
+        options={{
+          headerShown: false,
+          tabBarLabel: '',
+          tabBarIcon: () => renderImageViaje(),
         }}
         component={NavigationHome}
-      />
-      {/* Tab-StrainsScreen */}
-      <Tab.Screen
-        name="Strains"
-        component={StrainsScreen}
-        options={{
-          tabBarLabel: 'Strains',
-          tabBarIcon: (color, size) => (
-            <Icon name="leaf" size={23} color={color} />
-          ),
-        }}
-      />
-      {/* Tab-ProfileScreen */}
-      <Tab.Screen
-        name="More"
-        component={NavigationHome}
-        options={{
-          tabBarLabel: 'More',
-          tabBarIcon: (color, size) => (
-            <Icon name="plus" size={23} color={color} />
-          ),
-        }}
-      />
+      />            
     </Tab.Navigator>
   );
 };
 export default TabLayout;
 
-function renderImageMenu(image) {
+function renderImageViaje(image) {
   return (
     <Image
       style={{
@@ -91,7 +54,22 @@ function renderImageMenu(image) {
         marginLeft: 10,
         marginRight: 10,
       }}
-      source={require('../../assets/agtech_logo.png')}
+      source={require('../../assets/ic_viajes/de-viaje.png')}
+    />
+  );
+}
+
+function renderImageMisViajes(image) {
+  return (
+    <Image
+      style={{
+        width: 30,
+        height: 30,
+        top: 10,
+        marginLeft: 10,
+        marginRight: 10,
+      }}
+      source={require('../../assets/ic_home/camara.png')}
     />
   );
 }
