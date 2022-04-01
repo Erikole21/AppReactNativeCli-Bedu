@@ -29,8 +29,8 @@ window.server = createServer({
           },
         ],
       };
-    });
-  },
+    });   
+  }
 });
 
 const ProductList = props => {

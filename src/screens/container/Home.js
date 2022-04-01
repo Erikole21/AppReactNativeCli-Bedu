@@ -1,18 +1,9 @@
 import React, {Fragment} from 'react';
-import {Text, TouchableOpacity, StyleSheet} from 'react-native';
-import Store from '../../store/store';
-import Header from '../../sections/components/header';
+import {StyleSheet} from 'react-native';
 import ProductList from '../../sections/container/ProductList';
-import {useNavigation} from '@react-navigation/native';
 
-const Home = props => {
-  const navigation = useNavigation();
-  const handleClose = () => {
-    Store.remove({
-      key: 'userLogin',
-    });
-    navigation.navigate('Login');
-  };
+
+const Home = props => { 
   return (
     <Fragment>     
       <ProductList />
