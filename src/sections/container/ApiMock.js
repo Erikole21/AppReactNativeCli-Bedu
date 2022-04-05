@@ -70,7 +70,13 @@ async function quitarViaje(idViaje) {
     if (misViajes != null) {
         let viajesJson = JSON.parse(misViajes);
         if (viajesJson.find(u => u.userId == userJson.id && u.idViaje == idViaje)) {
+            const viajesOtrosUser = viajesJson.filter(v => v.userId != userJson.id);
             viajesJson = viajesJson.filter(v => v.idViaje != idViaje && v.userId == userJson.id);
+            if (viajesOtrosUser) {
+                viajesOtrosUser.forEach(viaje => {
+                    viajesJson.push(viaje);
+                });
+            }
             await AsyncStorage.setItem('@MisViajes', JSON.stringify(viajesJson));
         }
     }

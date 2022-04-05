@@ -34,7 +34,7 @@ export default class Profile extends Component {
         <Text style={styles.nameText}>
           {this.state.user.nombre}
         </Text>
-      </ImageBackground>
+      </ImageBackground>      
     );
   }
 }
