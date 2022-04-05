@@ -1,36 +1,35 @@
-import React, {Fragment} from 'react';
-import {StyleSheet} from 'react-native';
+import React, { Fragment } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 import ProductList from '../../sections/container/ProductList';
 
 
-const Home = props => { 
+const Home = props => {
   return (
-    <Fragment>     
-      <ProductList />
+    <Fragment>
+      <View style={styles.top}>
+        <Text style={styles.productName}>Viajes Sugeridos</Text>
+      </View>
+      <ProductList todos={true} />
     </Fragment>
   );
 };
 const styles = StyleSheet.create({
-  button: {
-    backgroundColor: '#e350a8',
-    borderRadius: 5,
-  },
-  txtusername: {
-    backgroundColor: '#99c84a',
-    borderRadius: 5,
-    color: 'white',
-    padding: 5,
-    fontSize: 15,
-    fontWeight: 'bold',
+  productName: {
+    color: '#4c4c4c',
     textAlign: 'center',
-  },
-  buttonLabel: {
-    color: 'white',
-    padding: 5,
-    fontSize: 14,
+    fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textShadowColor: 'rgba(0,0,0,0.75)',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 0,
   },
+  top: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#eaeaea',
+    padding: 2,
+    borderRadius:5,
+    backgroundColor: 'white'
+  }
 });
 
 export default Home;

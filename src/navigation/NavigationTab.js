@@ -2,11 +2,11 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Image} from 'react-native';
 import NavigationHome from '../navigation/NavigationHome'
-import MisViajes from '../screens/container/Orders'
+import NavigationViajes from './NavigationViajes';
 
 
 const Tab = createBottomTabNavigator();
-const TabLayout = () => {     
+const TabLayout = () => {       
   return (
     <Tab.Navigator     
       initialRouteName='ViajesTab' 
@@ -22,9 +22,10 @@ const TabLayout = () => {
       {/* Tab-HomeScreen */}
       <Tab.Screen
         name="MisViajesTab"              
-        component={MisViajes}
+        component={NavigationViajes}
         options={{
           headerShown: false,
+          unmountOnBlur :true,
           tabBarLabel: '',
           tabBarIcon: () => renderImageMisViajes(),
         }}
@@ -33,6 +34,7 @@ const TabLayout = () => {
       <Tab.Screen
         name="ViajesTab"
         options={{
+          unmountOnBlur :true,
           headerShown: false,
           tabBarLabel: '',
           tabBarIcon: () => renderImageViaje(),

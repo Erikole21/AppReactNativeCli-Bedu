@@ -15,7 +15,8 @@ import 'react-native-gesture-handler';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {useNavigation} from '@react-navigation/native';
 import {useFormik} from 'formik';
-import UsersData from '../../sections/container/UserData'
+import api from '../../sections/container/ApiMock'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 LogBox.ignoreLogs(['Warning: ...']);
@@ -40,19 +41,25 @@ const Login = () => {
       Alert.alert('Ingrese datos de acceso.');
     }
 
-    const User = UsersData.ConsultarUsuario(emailUser,passwordUser);
-    console.log(User);
-    setLoading(false);
-    navigation.navigate('DrawerNavigation');
+    const user = api.consultarUsuario(emailUser,passwordUser);
+    if (user!=null) {
+      AsyncStorage.setItem('@Users', JSON.stringify(user),()=>{
+        setLoading(false);
+        navigation.navigate('DrawerNavigation');
+      });     
+    }   
+    else{
+      Alert.alert('Usuario Invalido.');
+    }
   }
 
   return (
     <ImageBackground
-      source={require('../../../assets/background.png')}
+      source={require('../../../assets/blurBg.png')}
       style={styles.image}>
       <SafeAreaView style={styles.container}>
         <Image
-          source={require('../../../assets/bedu.png')}
+          source={require('../../../assets/ViajesLogo.png')}
           style={styles.logo}
         />
         <View>
@@ -82,8 +89,7 @@ const Login = () => {
               <Text style={styles.buttonLabel}>Iniciar Sesión</Text>
             )}
           </TouchableOpacity>
-        </View>
-        <Text style={styles.textByGroupar}>React Native</Text>
+        </View>        
       </SafeAreaView>
     </ImageBackground>
   );

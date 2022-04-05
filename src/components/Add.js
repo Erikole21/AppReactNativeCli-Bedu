@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 
-function Close(props) {
+function Add(props) {
   return (
     <TouchableOpacity onPress={props.onPress} style={styles.container}>
       <Text style={styles.button}>X</Text>
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Close;
+export default Add;

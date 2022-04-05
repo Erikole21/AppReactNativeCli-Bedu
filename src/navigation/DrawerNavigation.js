@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/drawer';
 import NavigationTab from './NavigationTab';
 import { useNavigation } from '@react-navigation/native';
-import Store from '../store/store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Perfil from '../screens/container/Profile'
 
 const Drawer = createDrawerNavigator();
@@ -40,10 +40,9 @@ export default DrawerNavigator;
 
 function CustomDrawerContent(props) {
   const navigation = useNavigation();
-  const handleClose = () => {
-    Store.remove({
-      key: 'userLogin',
-    });
+  const handleClose = async () => {
+    await AsyncStorage.removeItem('@Users');
+    //await AsyncStorage.removeItem('@MisViajes');
     navigation.navigate('Login');
   };
   return (
