@@ -39,6 +39,7 @@ const Login = () => {
 
     if(emailUser == null || passwordUser == null || emailUser == '' || passwordUser == ''){
       Alert.alert('Ingrese datos de acceso.');
+      return;
     }
 
     const user = api.consultarUsuario(emailUser,passwordUser);
